@@ -24,7 +24,8 @@ const RAPIDAPI_HOST = 'judge0-ce.p.rapidapi.com';
 
 // ===== Health endpoint =====
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+  console.log('Health check received');
+  res.json({ status: 'OK', message: 'Server is running', timestamp: new Date().toISOString() });
 });
 
 // ===== Run Code Endpoint =====
@@ -145,6 +146,6 @@ io.on('connection', (socket) => {
 
 // ===== Start Server =====
 const PORT = process.env.PORT || 3001;
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
